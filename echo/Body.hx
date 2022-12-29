@@ -465,6 +465,8 @@ class Body implements Disposable #if cog implements cog.IComponent #end {
    * Disposes the Body. DO NOT use the Body after disposing it, as it could lead to null reference errors.
    */
   public function dispose() {
+    if (disposed) return;
+
     disposed = true;
     remove();
     for (shape in shapes) shape.put();
