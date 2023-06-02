@@ -242,13 +242,6 @@ class Body implements Disposable #if cog implements cog.IComponent #end {
     kinematic = options.kinematic;
 
     if (options.material != null) material = options.material;
-    else if (options.gravity_scale != null || options.elasticity != null) {
-      // Temp: Support deprecated values
-      material = {
-        elasticity: options.elasticity,
-        gravity_scale: options.gravity_scale
-      }
-    }
     else material = Material.global;
 
     velocity.set(options.velocity_x, options.velocity_y);
