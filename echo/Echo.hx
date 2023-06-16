@@ -249,7 +249,7 @@ class Echo {
       case Right(arr):
         if (world == null) {
           for (body in arr) {
-            if (body == null) continue;
+            if (body == null || body.disposed) continue;
             var bb = body.bounds();
             var temp = Intersection.get(line, body);
             if (lb.overlaps(bb)) {
