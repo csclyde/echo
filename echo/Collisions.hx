@@ -195,7 +195,7 @@ class Collisions {
     world.quadtree.query(bounds, qr);
     world.static_quadtree.query(bounds, sqr);
     for (member in bodies) {
-      if (member.disposed || member.shapes.length == 0 || !member.active || !layer_match(body, member)) continue;
+      if ((body.avoid_class && member.avoid_class) || member.disposed || member.shapes.length == 0 || !member.active || !layer_match(body, member)) continue;
       for (result in (member.is_dynamic() ? qr : sqr)) {
         if (result.id == member.id) results.push(Collision.get(body, member));
       }
@@ -204,7 +204,7 @@ class Collisions {
   }
 
   public static function overlap_body_and_body_bounds(a:Body, b:Body):Null<Collision> {
-    if (a.disposed || b.disposed || a.shapes.length == 0 || b.shapes.length == 0 || !a.active || !b.active || a == b || !layer_match(a, b) || a.is_static()
+    if ((a.avoid_class && b.avoid_class) || a.disposed || b.disposed || a.shapes.length == 0 || b.shapes.length == 0 || !a.active || !b.active || a == b || !layer_match(a, b) || a.is_static()
       && b.is_static()) return null;
     var ab = a.bounds();
     var bb = b.bounds();

@@ -162,6 +162,8 @@ class Body implements Disposable #if cog implements cog.IComponent #end {
    */
   public var layer_mask:BitMask = new BitMask();
 
+  public var avoid_class:Bool = false;
+
   public var disposed(default, null):Bool;
   /**
    * TODO - sleeping support
