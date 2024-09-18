@@ -41,14 +41,17 @@ class Physics {
         body.velocity.length = body.velocity.length - body.drag_length * dt;
       }
 
+      body.impulse_velocity.length = body.impulse_velocity.length - body.drag_length * dt;
+      if(body.impulse_velocity.length < 0) body.impulse_velocity.length = 0;
+
       // Apply Linear Max Velocity
       if (body.max_velocity_length > 0 && body.velocity.length > body.max_velocity_length) {
         body.velocity.length = body.max_velocity_length;
       }
 
       // Apply Velocity
-      body.x += body.velocity.x * dt;
-      body.y += body.velocity.y * dt;
+      body.x += (body.velocity.x + body.impulse_velocity.x) * dt;
+      body.y += (body.velocity.y + body.impulse_velocity.y) * dt;
 
       // Apply Rotational Acceleration, Drag, and Max Velocity
       var accel_rot = body.torque * body.inverse_mass;

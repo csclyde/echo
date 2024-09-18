@@ -86,6 +86,7 @@ class Body implements Disposable #if cog implements cog.IComponent #end {
    * The units/second that a `Body` moves.
    */
   public var velocity:Vector2 = new Vector2(0, 0);
+  public var impulse_velocity:Vector2 = new Vector2(0, 0);
   /**
    * A measure of how fast a `Body` will change it's velocity.
    *
@@ -391,6 +392,9 @@ class Body implements Disposable #if cog implements cog.IComponent #end {
       case POSITION:
         this.x += x;
         this.y += y;
+      case IMPULSE:
+        impulse_velocity.x += x;
+        impulse_velocity.y += y;
     }
   }
   /**
@@ -467,6 +471,7 @@ class Body implements Disposable #if cog implements cog.IComponent #end {
     shapes = null;
     // TODO - dispose (or remove?) children Bodies
     velocity = null;
+    impulse_velocity = null;
     max_velocity = null;
     drag = null;
     data = null;

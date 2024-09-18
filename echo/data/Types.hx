@@ -15,4 +15,5 @@ enum abstract ForceType(Int) from Int to Int {
   var ACCELERATION;
   var VELOCITY;
   var POSITION;
+  var IMPULSE;
 }
