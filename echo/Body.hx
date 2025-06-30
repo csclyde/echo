@@ -137,6 +137,7 @@ class Body implements Disposable #if cog implements cog.IComponent #end {
    * A measure of how fast a Body will move its `rotational_velocity` towards 0.
    */
   public var rotational_drag:Float;
+  public var elevation:Float = 1.0;
   /**
    * Percentage value that represents how much a World's gravity affects the Body.
    */
@@ -393,8 +394,8 @@ class Body implements Disposable #if cog implements cog.IComponent #end {
         this.x += x;
         this.y += y;
       case IMPULSE:
-        impulse_velocity.x += x;
-        impulse_velocity.y += y;
+        impulse_velocity.x += x * inverse_mass;
+        impulse_velocity.y += y * inverse_mass;
     }
   }
   /**

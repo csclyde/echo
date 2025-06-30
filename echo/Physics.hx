@@ -41,7 +41,7 @@ class Physics {
         body.velocity.length = body.velocity.length - body.drag_length * dt;
       }
 
-      body.impulse_velocity.length = body.impulse_velocity.length - body.drag_length * dt;
+      body.impulse_velocity.length = body.impulse_velocity.length - (body.drag_length * dt);
       if(body.impulse_velocity.length < 0) body.impulse_velocity.length = 0;
 
       // Apply Linear Max Velocity
